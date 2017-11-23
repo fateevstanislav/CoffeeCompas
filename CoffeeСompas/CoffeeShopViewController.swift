@@ -9,9 +9,10 @@
 import UIKit
 
 class CoffeeShopViewController: UIViewController, UITextFieldDelegate,
-  UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     var coffeeShop: CoffeeShop?
+    var comments: [Comment] = []
     
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var name: UILabel!
@@ -24,6 +25,7 @@ class CoffeeShopViewController: UIViewController, UITextFieldDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCoffeeShop()
+        comments = (coffeeShop?.comments)!
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -31,6 +33,8 @@ class CoffeeShopViewController: UIViewController, UITextFieldDelegate,
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
     func loadCoffeeShop()
     {
@@ -40,6 +44,32 @@ class CoffeeShopViewController: UIViewController, UITextFieldDelegate,
         email.text = coffeeShop?.email
         phone.text = coffeeShop?.phone
         rating.rating = (coffeeShop?.rating)!
+    }
+    
+    // MARK: - Table view data source
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return comments.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cellIdentifier = "CommentTableViewCell"
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? CommentTableViewCell else {
+            fatalError("The dequeued cell is not an instance of \(cellIdentifier).")
+        }
+        let comment = comments[indexPath.row]
+        
+        cell.nameLabel.text = comment.author.name
+        cell.rating.rating = comment.rating
+        cell.textLabel?.text = comment.text
+        
+        return cell
     }
 
 

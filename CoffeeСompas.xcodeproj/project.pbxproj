@@ -18,6 +18,7 @@
 		3F65D7F91FB44C0000ED0B57 /* Description in Resources */ = {isa = PBXBuildFile; fileRef = 3F65D7F81FB44C0000ED0B57 /* Description */; };
 		3F65D7FB1FB467C700ED0B57 /* CosmosDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F65D7FA1FB467C700ED0B57 /* CosmosDistrib.swift */; };
 		3F65D7FD1FB469E600ED0B57 /* CoffeeShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F65D7FC1FB469E600ED0B57 /* CoffeeShop.swift */; };
+		3FB9C2991FC6CE5F00FBCE8F /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB9C2981FC6CE5F00FBCE8F /* CommentTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		3F65D7F81FB44C0000ED0B57 /* Description */ = {isa = PBXFileReference; lastKnownFileType = text; path = Description; sourceTree = "<group>"; };
 		3F65D7FA1FB467C700ED0B57 /* CosmosDistrib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmosDistrib.swift; sourceTree = "<group>"; };
 		3F65D7FC1FB469E600ED0B57 /* CoffeeShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShop.swift; sourceTree = "<group>"; };
+		3FB9C2981FC6CE5F00FBCE8F /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				3F3C51191FBC391B00951FA2 /* CoffeeShopTableViewController.swift */,
 				3F65D7E71FB43D5100ED0B57 /* Main.storyboard */,
 				3F3C51171FBC2E5B00951FA2 /* CoffeShopTableViewCell.swift */,
+				3FB9C2981FC6CE5F00FBCE8F /* CommentTableViewCell.swift */,
 				3F65D7ED1FB43D5100ED0B57 /* Assets.xcassets */,
 				3F65D7EF1FB43D5100ED0B57 /* LaunchScreen.storyboard */,
 				3F65D7F21FB43D5100ED0B57 /* Info.plist */,
@@ -158,6 +161,7 @@
 				3F65D7EC1FB43D5100ED0B57 /* Coffee_ompas.xcdatamodeld in Sources */,
 				3F3C51181FBC2E5B00951FA2 /* CoffeShopTableViewCell.swift in Sources */,
 				3F65D7E61FB43D5100ED0B57 /* CoffeeShopViewController.swift in Sources */,
+				3FB9C2991FC6CE5F00FBCE8F /* CommentTableViewCell.swift in Sources */,
 				3F65D7E41FB43D5100ED0B57 /* AppDelegate.swift in Sources */,
 				3F3C511A1FBC391B00951FA2 /* CoffeeShopTableViewController.swift in Sources */,
 				3F65D7FB1FB467C700ED0B57 /* CosmosDistrib.swift in Sources */,
