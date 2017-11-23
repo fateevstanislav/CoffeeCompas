@@ -120,9 +120,7 @@
                             <outlet property="delegate" destination="EdM-as-9Js" id="hCA-Ls-caX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="U5U-0c-hUb">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="aPX-FB-C6Q"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="U5U-0c-hUb"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="39A-dL-swk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -189,7 +187,7 @@
                                         <rect key="frame" x="0.0" y="100" width="375" height="30"/>
                                         <subviews>
                                             <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZzR-wf-PMN" customClass="CosmosView" customModule="CoffeeСompas" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="329" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <viewLayoutGuide key="safeArea" id="Pa9-SH-0mk"/>
                                                 <userDefinedRuntimeAttributes>
@@ -218,11 +216,11 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sdR-pj-O64">
-                                                <rect key="frame" x="329" y="0.0" width="46" height="30"/>
+                                                <rect key="frame" x="250" y="0.0" width="125" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="cdD-lI-LmF"/>
                                                 </constraints>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="Add comment"/>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -255,7 +253,7 @@
                                             <constraint firstItem="ZzR-wf-PMN" firstAttribute="leading" secondItem="dhn-yc-sHd" secondAttribute="leading" id="q0v-Nl-Ljh"/>
                                             <constraint firstItem="sdR-pj-O64" firstAttribute="top" secondItem="dhn-yc-sHd" secondAttribute="topMargin" id="u0U-NS-3XZ"/>
                                             <constraint firstItem="sdR-pj-O64" firstAttribute="centerY" secondItem="dhn-yc-sHd" secondAttribute="centerY" id="utY-Nx-hPQ"/>
-                                            <constraint firstItem="sdR-pj-O64" firstAttribute="leading" secondItem="dhn-yc-sHd" secondAttribute="leading" constant="329" id="w5Q-GZ-mcP"/>
+                                            <constraint firstItem="sdR-pj-O64" firstAttribute="leading" secondItem="dhn-yc-sHd" secondAttribute="leading" constant="250" id="w5Q-GZ-mcP"/>
                                             <constraint firstItem="sdR-pj-O64" firstAttribute="top" secondItem="dhn-yc-sHd" secondAttribute="top" id="xs5-Yl-QfX"/>
                                             <constraint firstItem="ZzR-wf-PMN" firstAttribute="centerY" secondItem="dhn-yc-sHd" secondAttribute="centerY" id="zpw-aC-HpJ"/>
                                         </constraints>
@@ -263,6 +261,37 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Swb-5P-Jjd">
                                         <rect key="frame" x="0.0" y="130" width="375" height="424"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="tpY-gC-5o2">
+                                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tpY-gC-5o2" id="84Y-QP-Isd">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b53-BX-Umc">
+                                                            <rect key="frame" x="8" y="37" width="359" height="55"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lyp-jR-syf">
+                                                            <rect key="frame" x="8" y="8" width="137" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vzv-OH-UIA" customClass="CosmosView" customModule="CoffeeСompas" customModuleProvider="target">
+                                                            <rect key="frame" x="159" y="8" width="208" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </view>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
                                     </tableView>
                                 </subviews>
                             </stackView>
