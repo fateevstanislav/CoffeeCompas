@@ -35,15 +35,21 @@ class CoffeeShop {
     let logo: UIImage
     var phone: String = ""
     var email: String = ""
-    var rating: Double = 0
     var website: String = ""
     var comments: [Comment] = []
-    
     
     init(name: String, logo: UIImage, phone: String, email: String) {
         self.name = name
         self.logo = logo
         self.email = email
         self.phone = phone
+    }
+    
+    func rating() -> Double {
+        if comments.count == 0 {
+            return 0.0
+        }
+        let sumOfRatings = comments.reduce(0.0) { ($0 + ($1.rating)) }
+        return sumOfRatings / Double(comments.count)
     }
 }

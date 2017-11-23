@@ -43,7 +43,7 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDele
         address.text = coffeeShop?.website
         email.text = coffeeShop?.email
         phone.text = coffeeShop?.phone
-        rating.rating = (coffeeShop?.rating)!
+        rating.rating = (coffeeShop?.rating())!
     }
     
     // MARK: - Table view data source

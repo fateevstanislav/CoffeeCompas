@@ -52,7 +52,7 @@ class CoffeeShopTableViewController: UITableViewController {
         
         cell.nameLabel.text = coffeeShop.name
         cell.photoImageView.image = coffeeShop.logo
-        cell.ratingControl.rating = coffeeShop.rating
+        cell.ratingControl.rating = coffeeShop.rating()
         
 
         return cell
@@ -120,10 +120,8 @@ class CoffeeShopTableViewController: UITableViewController {
         let comment4 = Comment(text: "Nice coffee shop", author: user2, rating: 4)
         
         let cs1 = CoffeeShop(name: "Starbucks", logo: photo1!, phone: "12345", email: "email@email")
-        cs1.rating = 4.75
         cs1.comments = [comment1, comment3]
         let cs2 = CoffeeShop(name: "Пить кофе", logo: photo2!, phone: "12345", email: "email@email")
-        cs2.rating = 3.5
         cs2.comments = [comment2, comment4]
         
         coffeeShops += [cs1, cs2]
