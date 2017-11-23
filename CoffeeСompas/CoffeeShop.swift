@@ -18,12 +18,15 @@ class User {
 }
 
 class Comment {
-    var text: String
+    let text: String
     let author: User
+    let rating: Double
     
-    init(text: String, author: User) {
+    
+    init(text: String, author: User, rating: Double) {
         self.text = text
         self.author = author
+        self.rating = rating
     }
 }
 
