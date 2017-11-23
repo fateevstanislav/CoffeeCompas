@@ -1,0 +1,16 @@
+Location based coffee shop tracker.
+
+Scenes:
+1. List – List of nearest shops
+2. Map – MapView of nearest shops
+    Provides markers for every shop in the area.
+3. Shop – Shop info
+    Logo, name, phone, email, web-site, rating, comments.
+    All the contact data should be clickable.
+    Users should be able to rate providers.
+4. New place – Add shop
+    User should be able to add new places to the map.
+
+https://code.tutsplus.com/tutorials/ios-fArom-scratch-with-swift-exploring-tab-bar-controller--cms-25470
+https://github.com/evgenyneu/Cosmos
+https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/CreateATableView.html
