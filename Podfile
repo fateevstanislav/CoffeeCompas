@@ -7,5 +7,7 @@ target 'CoffeeСompas' do
 
   # Pods for CoffeeСompas
   pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'FirebaseUI'
 
 end
