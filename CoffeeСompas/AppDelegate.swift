@@ -12,11 +12,12 @@ import CoreData
 import Firebase
 import FirebaseAuthUI
 import FirebaseGoogleAuthUI
+import FirebaseFacebookAuthUI
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate { //, FUIAuthDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, FUIAuthDelegate {
     
-    func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
+    func authUI(_ authUI: FUIAuth, didSignInWith user: FirebaseAuth.User?, error: Error?){
         //guard let user = user, error == nil else { return }
     }
     
@@ -28,10 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate { //, FUIAuthDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         let authUI = FUIAuth.defaultAuthUI()
-        authUI?.providers = [ FUIGoogleAuth() ]
-        //authUI?.delegate = self
+        authUI?.providers = [ FUIGoogleAuth(), FUIFacebookAuth() ]
+        authUI?.delegate = self
         //self.present(authUI?.authViewController(), animated: true)
-        return true
+        //let sourceApplication = options[UIApplacationOpenURLOp]
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
