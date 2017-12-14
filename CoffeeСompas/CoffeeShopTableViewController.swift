@@ -111,8 +111,8 @@ class CoffeeShopTableViewController: UITableViewController {
         let photo1 = UIImage(named: "starbucks")
         let photo2 = UIImage(named: "pitcoffee")
         
-        let user1 = User(name: "Barry Allen")
-        let user2 = User(name: "Wally West")
+        let user1 = CoffeeShopUser(name: "Barry Allen")
+        let user2 = CoffeeShopUser(name: "Wally West")
         
         let comment1 = Comment(text: "Good", author: user1, rating: 5)
         let comment2 = Comment(text: "Not so bad", author: user1, rating: 4)

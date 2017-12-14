@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class User {
+class CoffeeShopUser {
     let name: String
     
     init(name: String) {
@@ -19,11 +19,11 @@ class User {
 
 class Comment {
     let text: String
-    let author: User
+    let author: CoffeeShopUser
     let rating: Double
     
     
-    init(text: String, author: User, rating: Double) {
+    init(text: String, author: CoffeeShopUser, rating: Double) {
         self.text = text
         self.author = author
         self.rating = rating
