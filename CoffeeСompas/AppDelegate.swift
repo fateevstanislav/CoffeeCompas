@@ -12,27 +12,24 @@ import CoreData
 import Firebase
 import FirebaseAuthUI
 import FirebaseGoogleAuthUI
-import FirebaseFacebookAuthUI
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, FUIAuthDelegate {
-    
-    func authUI(_ authUI: FUIAuth, didSignInWith user: FirebaseAuth.User?, error: Error?){
-        //guard let user = user, error == nil else { return }
-    }
-    
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var storyboard: UIStoryboard?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        FirebaseApp.configure()
-        let authUI = FUIAuth.defaultAuthUI()
-        authUI?.providers = [ FUIGoogleAuth(), FUIFacebookAuth() ]
-        authUI?.delegate = self
-        //self.present(authUI?.authViewController(), animated: true)
-        //let sourceApplication = options[UIApplacationOpenURLOp]
+        
+        storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        FireWrapper.auth.delegate = self
+        window?.rootViewController = storyboard?.instantiateInitialViewController()
+        window?.makeKeyAndVisible()
+        
+        return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -103,6 +100,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FUIAuthDelegate {
             }
         }
     }
+}
 
+extension AppDelegate: FireAuthWrapperDelegate {
+    
+    func didChangeAuth(_ auth: FireAuthWrapper, forUser user: User?) {
+        if let user = user {
+            print("signed in as", user.displayName!)
+            window?.rootViewController = storyboard?.instantiateInitialViewController()
+        } else {
+            print("signed out")
+            window?.rootViewController = FireWrapper.auth.signInController
+        }
+    }
+    
+    func failed(withError error: Error, onAction action: FireAuthWrapper.Action) {
+        let nerror = error as NSError
+        print("Error", nerror.localizedDescription)
+        
+        let alert = UIAlertController(title: "Error", message: nerror.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        
+        window?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
 }
 

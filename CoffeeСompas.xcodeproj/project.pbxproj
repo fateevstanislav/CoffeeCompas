@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F0A17B91FE270400004159E /* FirebaseDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0A17B41FE270400004159E /* FirebaseDataDelegate.swift */; };
+		3F0A17BA1FE270400004159E /* FireWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0A17B51FE270400004159E /* FireWrapper.swift */; };
+		3F0A17BB1FE270400004159E /* FireDataWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0A17B61FE270400004159E /* FireDataWrapper.swift */; };
+		3F0A17BC1FE270400004159E /* FireDataRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0A17B71FE270400004159E /* FireDataRepresentable.swift */; };
+		3F0A17BD1FE270400004159E /* FireAuthWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0A17B81FE270400004159E /* FireAuthWrapper.swift */; };
 		3F3C51181FBC2E5B00951FA2 /* CoffeShopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3C51171FBC2E5B00951FA2 /* CoffeShopTableViewCell.swift */; };
 		3F3C511A1FBC391B00951FA2 /* CoffeeShopTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3C51191FBC391B00951FA2 /* CoffeeShopTableViewController.swift */; };
 		3F46652E1FCFF561008F0D8D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F46652D1FCFF561008F0D8D /* GoogleService-Info.plist */; };
@@ -24,6 +29,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F0A17B41FE270400004159E /* FirebaseDataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDataDelegate.swift; sourceTree = "<group>"; };
+		3F0A17B51FE270400004159E /* FireWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireWrapper.swift; sourceTree = "<group>"; };
+		3F0A17B61FE270400004159E /* FireDataWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireDataWrapper.swift; sourceTree = "<group>"; };
+		3F0A17B71FE270400004159E /* FireDataRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireDataRepresentable.swift; sourceTree = "<group>"; };
+		3F0A17B81FE270400004159E /* FireAuthWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireAuthWrapper.swift; sourceTree = "<group>"; };
 		3F3C51171FBC2E5B00951FA2 /* CoffeShopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeShopTableViewCell.swift; sourceTree = "<group>"; };
 		3F3C51191FBC391B00951FA2 /* CoffeeShopTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShopTableViewController.swift; sourceTree = "<group>"; };
 		3F46652D1FCFF561008F0D8D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -64,6 +74,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3F0A17B31FE270100004159E /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				3F0A17B81FE270400004159E /* FireAuthWrapper.swift */,
+				3F0A17B41FE270400004159E /* FirebaseDataDelegate.swift */,
+				3F0A17B71FE270400004159E /* FireDataRepresentable.swift */,
+				3F0A17B61FE270400004159E /* FireDataWrapper.swift */,
+				3F0A17B51FE270400004159E /* FireWrapper.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		3F65D7D71FB43D5100ED0B57 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +107,7 @@
 		3F65D7E21FB43D5100ED0B57 /* CoffeeСompas */ = {
 			isa = PBXGroup;
 			children = (
+				3F0A17B31FE270100004159E /* Firebase */,
 				3F46652D1FCFF561008F0D8D /* GoogleService-Info.plist */,
 				3F65D7E31FB43D5100ED0B57 /* AppDelegate.swift */,
 				3F65D7E51FB43D5100ED0B57 /* CoffeeShopViewController.swift */,
@@ -238,11 +261,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CoffeeСompas/Pods-CoffeeСompas-resources.sh",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseFacebookAuthUI.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseGoogleAuthUI.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebasePhoneAuthUI.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseTwitterAuthUI.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseFacebookAuthUI.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseGoogleAuthUI.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebasePhoneAuthUI.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseTwitterAuthUI.bundle,
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
@@ -285,10 +308,15 @@
 				3F3C51181FBC2E5B00951FA2 /* CoffeShopTableViewCell.swift in Sources */,
 				3F65D7E61FB43D5100ED0B57 /* CoffeeShopViewController.swift in Sources */,
 				3FB9C2991FC6CE5F00FBCE8F /* CommentTableViewCell.swift in Sources */,
+				3F0A17BD1FE270400004159E /* FireAuthWrapper.swift in Sources */,
 				3F65D7E41FB43D5100ED0B57 /* AppDelegate.swift in Sources */,
 				3F3C511A1FBC391B00951FA2 /* CoffeeShopTableViewController.swift in Sources */,
+				3F0A17BC1FE270400004159E /* FireDataRepresentable.swift in Sources */,
+				3F0A17B91FE270400004159E /* FirebaseDataDelegate.swift in Sources */,
 				3F65D7FB1FB467C700ED0B57 /* CosmosDistrib.swift in Sources */,
+				3F0A17BB1FE270400004159E /* FireDataWrapper.swift in Sources */,
 				3F65D7FD1FB469E600ED0B57 /* CoffeeShop.swift in Sources */,
+				3F0A17BA1FE270400004159E /* FireWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
