@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
 
 class CoffeeShopUser {
     let name: String
@@ -21,12 +22,17 @@ class Comment {
     let text: String
     let author: CoffeeShopUser
     let rating: Double
+    let coffeeShopId: Int
     
+    static var path: String {
+        return "comments"
+    }
     
-    init(text: String, author: CoffeeShopUser, rating: Double) {
+    init(text: String, author: CoffeeShopUser, rating: Double, coffeeShopId: Int) {
         self.text = text
         self.author = author
         self.rating = rating
+        self.coffeeShopId = coffeeShopId
     }
 }
 
@@ -37,12 +43,14 @@ class CoffeeShop {
     var email: String = ""
     var website: String = ""
     var comments: [Comment] = []
+    public let id: Int
     
-    init(name: String, logo: UIImage, phone: String, email: String) {
+    init(name: String, logo: UIImage, phone: String, email: String, id: Int) {
         self.name = name
         self.logo = logo
         self.email = email
         self.phone = phone
+        self.id = id
     }
     
     func rating() -> Double {

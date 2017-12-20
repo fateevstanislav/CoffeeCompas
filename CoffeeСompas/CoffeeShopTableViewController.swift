@@ -114,14 +114,14 @@ class CoffeeShopTableViewController: UITableViewController {
         let user1 = CoffeeShopUser(name: "Barry Allen")
         let user2 = CoffeeShopUser(name: "Wally West")
         
-        let comment1 = Comment(text: "Good", author: user1, rating: 5)
-        let comment2 = Comment(text: "Not so bad", author: user1, rating: 4)
-        let comment3 = Comment(text: "Delicious coffee, nothing unusual", author: user2, rating: 4)
-        let comment4 = Comment(text: "Nice coffee shop", author: user2, rating: 4)
+        let comment1 = Comment(text: "Good", author: user1, rating: 5, coffeeShopId: 1)
+        let comment2 = Comment(text: "Not so bad", author: user1, rating: 4, coffeeShopId: 1)
+        let comment3 = Comment(text: "Delicious coffee, nothing unusual", author: user2, rating: 4, coffeeShopId: 2)
+        let comment4 = Comment(text: "Nice coffee shop", author: user2, rating: 4, coffeeShopId: 2)
         
-        let cs1 = CoffeeShop(name: "Starbucks", logo: photo1!, phone: "12345", email: "email@email")
+        let cs1 = CoffeeShop(name: "Starbucks", logo: photo1!, phone: "12345", email: "email@email", id: 1)
         cs1.comments = [comment1, comment3]
-        let cs2 = CoffeeShop(name: "Пить кофе", logo: photo2!, phone: "12345", email: "email@email")
+        let cs2 = CoffeeShop(name: "Пить кофе", logo: photo2!, phone: "12345", email: "email@email", id: 2)
         cs2.comments = [comment2, comment4]
         
         coffeeShops += [cs1, cs2]

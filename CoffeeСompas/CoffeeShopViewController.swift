@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class CoffeeShopViewController: UIViewController, UITextFieldDelegate,
-UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, FirebaseDataDelegate {
+    
+    
+    var fireSourceRef: DatabaseReference!
+    var fireObservers = NSMutableDictionary()
+    
     
     var coffeeShop: CoffeeShop?
     var comments: [Comment] = []
@@ -24,6 +30,7 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fireSourceRef = FireWrapper.data.userData.child(Comment.path)
         loadCoffeeShop()
         comments = (coffeeShop?.comments)!
         // Do any additional setup after loading the view, typically from a nib.
@@ -34,10 +41,26 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDele
         // Dispose of any resources that can be recreated.
     }
     
+    func loadComments(withSnapshot snapshot: DataSnapshot, coffeeShopId: Int) -> [Comment] {
+        
+        var comments = [Comment]()
+        
+        let tmpUser = CoffeeShopUser(name: "Barry Allen")
+        let tmpRating = 4.75
+        
+        for child in snapshot.children {
+            let text = child as! String
+            let comment = Comment(text: text, author: tmpUser, rating: tmpRating, coffeeShopId: 1)
+            comments.append(comment)
+        }
+        
+        return comments
+    }
     
     
     func loadCoffeeShop()
     {
+        
         logo.image = coffeeShop?.logo
         name.text = coffeeShop?.name
         address.text = coffeeShop?.website
