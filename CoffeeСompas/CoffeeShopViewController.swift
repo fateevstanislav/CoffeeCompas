@@ -30,9 +30,10 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fireSourceRef = FireWrapper.data.userData.child(Comment.path)
+        fireSourceRef = FireWrapper.data.userData.child("coffeeshops")
+        let cshops = fireSourceRef.load(with: self.loadComments(withSnapshot: ))
         loadCoffeeShop()
-        comments = (coffeeShop?.comments)!
+        //comments = (coffeeShop?.comments)!
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -41,20 +42,16 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDele
         // Dispose of any resources that can be recreated.
     }
     
-    func loadComments(withSnapshot snapshot: DataSnapshot, coffeeShopId: Int) -> [Comment] {
-        
-        var comments = [Comment]()
-        
-        let tmpUser = CoffeeShopUser(name: "Barry Allen")
-        let tmpRating = 4.75
+    func loadComments(withSnapshot snapshot: DataSnapshot) {
+        print("\n\n======================\n\n")
+        print(snapshot.value)
+        print("\n\n======================\n\n")
         
         for child in snapshot.children {
-            let text = child as! String
-            let comment = Comment(text: text, author: tmpUser, rating: tmpRating, coffeeShopId: 1)
-            comments.append(comment)
+            print("\n\n======================\n\n")
+            print(child)
+            print("\n\n======================\n\n")
         }
-        
-        return comments
     }
     
     

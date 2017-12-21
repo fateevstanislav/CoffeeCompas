@@ -24,10 +24,6 @@ class Comment {
     let rating: Double
     let coffeeShopId: Int
     
-    static var path: String {
-        return "comments"
-    }
-    
     init(text: String, author: CoffeeShopUser, rating: Double, coffeeShopId: Int) {
         self.text = text
         self.author = author
@@ -36,7 +32,21 @@ class Comment {
     }
 }
 
-class CoffeeShop {
+class CoffeeShop { //}: FireDataRepresentable {
+    //static var path: String {
+    //    return "coffeeshops"
+    //}
+    
+    //var fireId: String!
+    
+    //func encode(toChild child: DatabaseReference) {
+    //    <#code#>
+    //}
+    
+    //static func decode(fromSnapshot snapshot: DataSnapshot) -> Self? {
+    //    <#code#>
+    //}
+    
     let name: String
     let logo: UIImage
     var phone: String = ""
