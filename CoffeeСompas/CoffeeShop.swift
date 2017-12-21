@@ -32,20 +32,7 @@ class Comment {
     }
 }
 
-class CoffeeShop { //}: FireDataRepresentable {
-    //static var path: String {
-    //    return "coffeeshops"
-    //}
-    
-    //var fireId: String!
-    
-    //func encode(toChild child: DatabaseReference) {
-    //    <#code#>
-    //}
-    
-    //static func decode(fromSnapshot snapshot: DataSnapshot) -> Self? {
-    //    <#code#>
-    //}
+class CoffeeShop { //: Codable, FireDataRepresentable {
     
     let name: String
     let logo: UIImage
@@ -53,7 +40,23 @@ class CoffeeShop { //}: FireDataRepresentable {
     var email: String = ""
     var website: String = ""
     var comments: [Comment] = []
-    public let id: Int
+    var id: Int
+    
+    static var path: String {
+       return "coffeeshops"
+    }
+    
+    //var fireId: String!
+    
+    //func encode(toChild child: DatabaseReference) {
+        //child.setValue([CodingKeys.name.stringValue : title])
+            
+            //. .name.stringValue: name])
+    //}
+    
+    //static func decode(fromSnapshot snapshot: DataSnapshot) -> Self? {
+    //
+    //}
     
     init(name: String, logo: UIImage, phone: String, email: String, id: Int) {
         self.name = name

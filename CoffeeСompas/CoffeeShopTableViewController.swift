@@ -21,7 +21,7 @@ class CoffeeShopTableViewController: UITableViewController, FirebaseDataDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fireSourceRef = FireWrapper.data.userData.root.child("coffeeshops")
+        fireSourceRef = FireWrapper.data.userData.root.child(CoffeeShop.path)
         let cshops = fireSourceRef.load(with: self.loadCoffeeShops(withSnapshot: ))
         loadSampleCoffeShops()
 
