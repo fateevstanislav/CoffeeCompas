@@ -33,12 +33,23 @@ class CoffeeShopTableViewController: UITableViewController, FirebaseDataDelegate
     }
     
     func loadCoffeeShops(withSnapshot snapshot: DataSnapshot) {
-        
-        for child in snapshot.children {
-            print("\n\n======================\n\n")
-            print(child)
-            print("\n\n======================\n\n")
-        }
+//        for child in snapshot.children {
+//            print("\n\n======================\n\n")
+//            for ch in (child as! DataSnapshot).children {
+//
+//                let val = ch as? DataSnapshot
+//                if (val != nil) {
+//                    print("=====\n")
+//                    print(val!.key)
+//                    print("\n")
+//                    print(val!.value)
+//                    print("=====\n")
+//                }
+//
+//            }
+//            //print(child)
+//            print("\n\n======================\n\n")
+//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -99,9 +110,9 @@ class CoffeeShopTableViewController: UITableViewController, FirebaseDataDelegate
         let comment3 = Comment(text: "Delicious coffee, nothing unusual", author: user2, rating: 4, coffeeShopId: 2)
         let comment4 = Comment(text: "Nice coffee shop", author: user2, rating: 4, coffeeShopId: 2)
         
-        let cs1 = CoffeeShop(name: "Starbucks", logo: photo1!, phone: "12345", email: "email@email", id: 1)
+        let cs1 = CoffeeShop(name: "Starbucks", address: "111", logo: photo1!, phone: "12345", email: "email@email", id: 1)
         cs1.comments = [comment1, comment3]
-        let cs2 = CoffeeShop(name: "Пить кофе", logo: photo2!, phone: "12345", email: "email@email", id: 2)
+        let cs2 = CoffeeShop(name: "Пить кофе", address: "222", logo: photo2!, phone: "12345", email: "email@email", id: 2)
         cs2.comments = [comment2, comment4]
         
         coffeeShops += [cs1, cs2]
