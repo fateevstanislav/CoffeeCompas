@@ -10,5 +10,6 @@ target 'CoffeeСompas' do
   pod 'Firebase/Auth'
   pod 'FirebaseUI'
   pod 'Firebase/Database'
-
+  pod 'Firebase/Storage'
+  pod 'SDWebImage/WebP'
 end

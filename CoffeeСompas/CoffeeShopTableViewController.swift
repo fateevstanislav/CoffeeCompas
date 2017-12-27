@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseStorageUI
 
 class CoffeeShopTableViewController: UITableViewController, FirebaseDataDelegate {
 
@@ -22,34 +23,22 @@ class CoffeeShopTableViewController: UITableViewController, FirebaseDataDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         fireSourceRef = FireWrapper.data.userData.root.child(CoffeeShop.path)
-        let cshops = fireSourceRef.load(with: self.loadCoffeeShops(withSnapshot: ))
-        loadSampleCoffeShops()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        fireSourceRef.load(with: self.loadCoffeeShops(withSnapshot: ))
     }
     
     func loadCoffeeShops(withSnapshot snapshot: DataSnapshot) {
-//        for child in snapshot.children {
-//            print("\n\n======================\n\n")
-//            for ch in (child as! DataSnapshot).children {
-//
-//                let val = ch as? DataSnapshot
-//                if (val != nil) {
-//                    print("=====\n")
-//                    print(val!.key)
-//                    print("\n")
-//                    print(val!.value)
-//                    print("=====\n")
-//                }
-//
-//            }
-//            //print(child)
-//            print("\n\n======================\n\n")
-//        }
+        
+        var css = [CoffeeShop]()
+        
+        for child in snapshot.children {
+            if let cs = CoffeeShop.decode(fromSnapshot: child as! DataSnapshot) {
+                css.append(cs)
+            }
+        }
+        
+        coffeeShops = css
+        tableView.reloadData()
+        refreshControl?.endRefreshing()
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,9 +66,14 @@ class CoffeeShopTableViewController: UITableViewController, FirebaseDataDelegate
         let coffeeShop = coffeeShops[indexPath.row]
         
         cell.nameLabel.text = coffeeShop.name
-        cell.photoImageView.image = coffeeShop.logo
         cell.ratingControl.rating = coffeeShop.rating()
         
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        
+        let imgRef = storageRef.child(coffeeShop.logo_url)
+        let placeholderImage = UIImage(named: "placeholder.jpg")
+        cell.imageView?.sd_setImage(with: imgRef, placeholderImage: placeholderImage)
 
         return cell
     }
@@ -94,28 +88,6 @@ class CoffeeShopTableViewController: UITableViewController, FirebaseDataDelegate
             let dest  = (segue.destination as? CoffeeShopViewController);
             dest?.coffeeShop = coffeeShops[self.tableView.indexPathForSelectedRow!.row]
         }
-    }
-    
-    // Mark: Private Methods
-    
-    private func loadSampleCoffeShops() {
-        let photo1 = UIImage(named: "starbucks")
-        let photo2 = UIImage(named: "pitcoffee")
-        
-        let user1 = CoffeeShopUser(name: "Barry Allen")
-        let user2 = CoffeeShopUser(name: "Wally West")
-        
-        let comment1 = Comment(text: "Good", author: user1, rating: 5, coffeeShopId: 1)
-        let comment2 = Comment(text: "Not so bad", author: user1, rating: 4, coffeeShopId: 1)
-        let comment3 = Comment(text: "Delicious coffee, nothing unusual", author: user2, rating: 4, coffeeShopId: 2)
-        let comment4 = Comment(text: "Nice coffee shop", author: user2, rating: 4, coffeeShopId: 2)
-        
-        let cs1 = CoffeeShop(name: "Starbucks", address: "111", logo: photo1!, phone: "12345", email: "email@email", id: 1)
-        cs1.comments = [comment1, comment3]
-        let cs2 = CoffeeShop(name: "Пить кофе", address: "222", logo: photo2!, phone: "12345", email: "email@email", id: 2)
-        cs2.comments = [comment2, comment4]
-        
-        coffeeShops += [cs1, cs2]
     }
 
 }

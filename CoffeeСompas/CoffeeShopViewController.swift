@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseStorageUI
 
 class CoffeeShopViewController: UIViewController, UITextFieldDelegate,
 UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
@@ -22,6 +23,7 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDele
     @IBOutlet weak var phone: UILabel!
     @IBOutlet weak var rating: CosmosView!
     @IBOutlet weak var changeRating: UIButton!
+    @IBOutlet weak var website: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,12 +42,19 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDele
     
     func loadCoffeeShop()
     {
-        logo.image = coffeeShop?.logo
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        
+        let imgRef = storageRef.child((coffeeShop?.logo_url)!)
+        let placeholderImage = UIImage(named: "placeholder.jpg")
+        logo.sd_setImage(with: imgRef, placeholderImage: placeholderImage)
         name.text = coffeeShop?.name
-        address.text = coffeeShop?.website
+        address.text = coffeeShop?.address
         email.text = coffeeShop?.email
+        website.text = coffeeShop?.website
         phone.text = coffeeShop?.phone
         rating.rating = (coffeeShop?.rating())!
+        comments = (coffeeShop?.comments)!
     }
     
     // MARK: - Table view data source
@@ -67,7 +76,7 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDele
         }
         let comment = comments[indexPath.row]
         
-        cell.nameLabel.text = comment.author.name
+        cell.nameLabel.text = comment.username
         cell.rating.rating = comment.rating
         cell.textLabel?.text = comment.text
         

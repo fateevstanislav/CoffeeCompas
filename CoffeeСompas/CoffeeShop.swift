@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
+import FirebaseStorageUI
 
 class CoffeeShopUser {
     let name: String
@@ -18,30 +19,51 @@ class CoffeeShopUser {
     }
 }
 
-class Comment {
+struct Comment : Codable {
     let text: String
-    let author: CoffeeShopUser
+    //let author: CoffeeShopUser
+    let username: String
     let rating: Double
-    let coffeeShopId: Int
+    //let coffeeShopId: Int
     
-    init(text: String, author: CoffeeShopUser, rating: Double, coffeeShopId: Int) {
+    init(text: String, username: String, rating: Double) {
         self.text = text
-        self.author = author
+        self.username = username
         self.rating = rating
-        self.coffeeShopId = coffeeShopId
+        //self.coffeeShopId = coffeeShopId
+    }
+    
+    static func decode(fromSnapshot snapshot: DataSnapshot) -> Comment? {
+        guard let values = snapshot.value as? [String:Any] else {return nil}
+        let text = values[CodingKeys.text.stringValue] as! String
+        let username = values[CodingKeys.username.stringValue] as! String
+        let rating = Double(values[CodingKeys.rating.stringValue] as! String)
+        
+        return Comment(text: text, username: username, rating: rating!)
+    }
+    
+    func Rating() -> Double {
+        return Double(self.rating)
+    }
+    
+    func encode(toChild child: DatabaseReference) {
+        child.setValue([CodingKeys.text.stringValue: text,
+                        CodingKeys.username.stringValue: username,
+                        CodingKeys.rating.stringValue: String(rating)])
     }
 }
 
-class CoffeeShop { // }: Codable, FireDataRepresentable {
+struct CoffeeShop : Codable, FireDataRepresentable {
     
     let name: String
     let address: String
-    let logo: UIImage
+    let logo_url: String
     var phone: String = ""
     var email: String = ""
     var website: String = ""
     var comments: [Comment] = []
-    var id: Int
+    let latitude: Double
+    let longitude: Double
     
     static var path: String {
        return "coffeeshops"
@@ -49,30 +71,57 @@ class CoffeeShop { // }: Codable, FireDataRepresentable {
     
     var fireId: String!
     
-//    func encode(toChild child: DatabaseReference) {
-//
-//    }
+    func encode(toChild child: DatabaseReference) {
+        child.setValue([CodingKeys.name.stringValue: name,
+                        CodingKeys.address.stringValue: address,
+                        CodingKeys.logo_url.stringValue: logo_url,
+                        CodingKeys.phone.stringValue: phone,
+                        CodingKeys.email.stringValue: email,
+                        CodingKeys.website.stringValue: website,
+                        CodingKeys.latitude.stringValue: String(latitude),
+                        CodingKeys.longitude.stringValue: String(longitude)])
+        for c in comments {
+            c.encode(toChild: child.child(CodingKeys.comments.stringValue).childByAutoId())
+        }
+    }
     
-//    static func decode(fromSnapshot snapshot: DataSnapshot) -> Self? {
-//        guard let values = snapshot.value as? [String:Any] else {return nil}
-//        let address = values[CodingKeys.address.stringvalue] as! String
-//        let name =
-//    }
+    static func decode(fromSnapshot snapshot: DataSnapshot) -> CoffeeShop? {
+        guard let values = snapshot.value as? [String:Any] else {return nil}
+        let address = values[CodingKeys.address.stringValue] as! String
+        let name = values[CodingKeys.name.stringValue] as! String
+        let logo_url = values[CodingKeys.logo_url.stringValue] as! String
+        let phone = values[CodingKeys.phone.stringValue] as! String
+        let email = values[CodingKeys.email.stringValue] as! String
+        let website = values[CodingKeys.website.stringValue] as! String
+        let latitude = values[CodingKeys.latitude.stringValue] as! Double
+        let longitude = values[CodingKeys.longitude.stringValue] as! Double
+        var comments: [Comment] = []
+        for comment in snapshot.childSnapshot(forPath: "comments").children {
+            comments.append(Comment.decode(fromSnapshot: comment as! DataSnapshot)!)
+        }
+        
+        var cs = CoffeeShop(name: name, address: address, logo_url: logo_url, website: website, phone: phone, email: email, latitude: latitude, longitude: longitude)
+        cs.comments = comments
+        return cs
+    }
     
-    init(name: String, address: String, logo: UIImage, phone: String, email: String, id: Int) {
+    init(name: String, address: String, logo_url: String, website: String, phone: String, email: String, latitude: Double, longitude: Double) {
         self.name = name
         self.address = address
-        self.logo = logo
+        self.logo_url = logo_url
+        self.website = website
         self.email = email
         self.phone = phone
-        self.id = id
+        self.latitude = latitude
+        self.longitude = longitude
+        //self.id = id
     }
     
     func rating() -> Double {
         if comments.count == 0 {
             return 0.0
         }
-        let sumOfRatings = comments.reduce(0.0) { ($0 + ($1.rating)) }
+        let sumOfRatings = comments.reduce(0.0) { ($0 + ($1.Rating())) }
         return sumOfRatings / Double(comments.count)
     }
 }

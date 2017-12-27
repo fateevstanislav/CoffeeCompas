@@ -12,6 +12,7 @@
 		3F0A17BB1FE270400004159E /* FireDataWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0A17B61FE270400004159E /* FireDataWrapper.swift */; };
 		3F0A17BC1FE270400004159E /* FireDataRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0A17B71FE270400004159E /* FireDataRepresentable.swift */; };
 		3F0A17BD1FE270400004159E /* FireAuthWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0A17B81FE270400004159E /* FireAuthWrapper.swift */; };
+		3F2A5F9D1FF3B1E80020FCDA /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2A5F9C1FF3B1E80020FCDA /* RateViewController.swift */; };
 		3F3C51181FBC2E5B00951FA2 /* CoffeShopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3C51171FBC2E5B00951FA2 /* CoffeShopTableViewCell.swift */; };
 		3F3C511A1FBC391B00951FA2 /* CoffeeShopTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3C51191FBC391B00951FA2 /* CoffeeShopTableViewController.swift */; };
 		3F46652E1FCFF561008F0D8D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F46652D1FCFF561008F0D8D /* GoogleService-Info.plist */; };
@@ -35,6 +36,7 @@
 		3F0A17B61FE270400004159E /* FireDataWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireDataWrapper.swift; sourceTree = "<group>"; };
 		3F0A17B71FE270400004159E /* FireDataRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireDataRepresentable.swift; sourceTree = "<group>"; };
 		3F0A17B81FE270400004159E /* FireAuthWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireAuthWrapper.swift; sourceTree = "<group>"; };
+		3F2A5F9C1FF3B1E80020FCDA /* RateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
 		3F3C51171FBC2E5B00951FA2 /* CoffeShopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeShopTableViewCell.swift; sourceTree = "<group>"; };
 		3F3C51191FBC391B00951FA2 /* CoffeeShopTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShopTableViewController.swift; sourceTree = "<group>"; };
 		3F46652D1FCFF561008F0D8D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				3F65D7FA1FB467C700ED0B57 /* CosmosDistrib.swift */,
 				3F65D7FC1FB469E600ED0B57 /* CoffeeShop.swift */,
 				3F779D351FF1055B001AF6C2 /* MapViewController.swift */,
+				3F2A5F9C1FF3B1E80020FCDA /* RateViewController.swift */,
 			);
 			path = "CoffeeСompas";
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -250,6 +254,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libwebp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,6 +315,7 @@
 				3F65D7EC1FB43D5100ED0B57 /* Coffee_ompas.xcdatamodeld in Sources */,
 				3F3C51181FBC2E5B00951FA2 /* CoffeShopTableViewCell.swift in Sources */,
 				3F65D7E61FB43D5100ED0B57 /* CoffeeShopViewController.swift in Sources */,
+				3F2A5F9D1FF3B1E80020FCDA /* RateViewController.swift in Sources */,
 				3FB9C2991FC6CE5F00FBCE8F /* CommentTableViewCell.swift in Sources */,
 				3F0A17BD1FE270400004159E /* FireAuthWrapper.swift in Sources */,
 				3F65D7E41FB43D5100ED0B57 /* AppDelegate.swift in Sources */,
