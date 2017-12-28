@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 import FirebaseStorageUI
+import MapKit
 
 class CoffeeShopUser {
     let name: String
@@ -123,5 +124,17 @@ struct CoffeeShop : Codable, FireDataRepresentable {
         }
         let sumOfRatings = comments.reduce(0.0) { ($0 + ($1.Rating())) }
         return sumOfRatings / Double(comments.count)
+    }
+}
+
+class CoffeeShopAnnotation: NSObject, MKAnnotation {
+    let coffeeShop: CoffeeShop
+    var coordinate: CLLocationCoordinate2D
+    var title: String?
+    
+    init(coffeeShop: CoffeeShop) {
+        self.coffeeShop = coffeeShop
+        self.coordinate = CLLocationCoordinate2D(latitude: coffeeShop.latitude, longitude: coffeeShop.longitude)
+        self.title = coffeeShop.name
     }
 }

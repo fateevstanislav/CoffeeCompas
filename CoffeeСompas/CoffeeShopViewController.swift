@@ -14,7 +14,8 @@ class CoffeeShopViewController: UIViewController, UITextFieldDelegate,
 UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     var coffeeShop: CoffeeShop?
-    var comments: [Comment] = []
+    var coffeeShopRef: DatabaseReference?
+    //var comments: [Comment] = []
     
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var name: UILabel!
@@ -24,12 +25,12 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDele
     @IBOutlet weak var rating: CosmosView!
     @IBOutlet weak var changeRating: UIButton!
     @IBOutlet weak var website: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCoffeeShop()
-        //comments = (coffeeShop?.comments)!
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,8 +38,13 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDele
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addComment" {
+            let dest  = (segue.destination as? RateViewController);
+            dest?.coffeeShopRef = coffeeShopRef
+            dest?.coffeeShop = coffeeShop
+        }
+    }
     
     func loadCoffeeShop()
     {
@@ -54,7 +60,16 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDele
         website.text = coffeeShop?.website
         phone.text = coffeeShop?.phone
         rating.rating = (coffeeShop?.rating())!
-        comments = (coffeeShop?.comments)!
+        coffeeShop?.comments=[]
+        
+        coffeeShopRef?.child("comments").observe(.childAdded) {
+            (snapshot) in
+            print(snapshot.value)
+            if let comment = Comment.decode(fromSnapshot: snapshot) {
+                self.coffeeShop?.comments.append(comment)
+            }
+            self.tableView.reloadData()
+        }
     }
     
     // MARK: - Table view data source
@@ -64,7 +79,7 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return comments.count
+        return coffeeShop?.comments.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,7 +89,7 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDele
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? CommentTableViewCell else {
             fatalError("The dequeued cell is not an instance of \(cellIdentifier).")
         }
-        let comment = comments[indexPath.row]
+        let comment = coffeeShop!.comments[indexPath.row]
         
         cell.nameLabel.text = comment.username
         cell.rating.rating = comment.rating

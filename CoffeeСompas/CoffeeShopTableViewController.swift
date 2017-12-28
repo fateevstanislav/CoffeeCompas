@@ -18,6 +18,7 @@ class CoffeeShopTableViewController: UITableViewController, FirebaseDataDelegate
     var fireObservers = NSMutableDictionary()
     
     var coffeeShops = [CoffeeShop]()
+    var coffeeShopRefs = [DatabaseReference]()
     
     
     override func viewDidLoad() {
@@ -31,14 +32,21 @@ class CoffeeShopTableViewController: UITableViewController, FirebaseDataDelegate
         var css = [CoffeeShop]()
         
         for child in snapshot.children {
-            if let cs = CoffeeShop.decode(fromSnapshot: child as! DataSnapshot) {
-                css.append(cs)
+            if let cs_snapshot = child as? DataSnapshot {
+                let cs = CoffeeShop.decode(fromSnapshot: cs_snapshot)
+                coffeeShopRefs.append(cs_snapshot.ref)
+                css.append(cs!)
+                
             }
         }
         
         coffeeShops = css
         tableView.reloadData()
         refreshControl?.endRefreshing()
+    }
+    
+    public func updateCSData() {
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,6 +95,7 @@ class CoffeeShopTableViewController: UITableViewController, FirebaseDataDelegate
         if segue.identifier == "showCoffeeShopInfo" {
             let dest  = (segue.destination as? CoffeeShopViewController);
             dest?.coffeeShop = coffeeShops[self.tableView.indexPathForSelectedRow!.row]
+            dest?.coffeeShopRef = coffeeShopRefs[self.tableView.indexPathForSelectedRow!.row]
         }
     }
 
